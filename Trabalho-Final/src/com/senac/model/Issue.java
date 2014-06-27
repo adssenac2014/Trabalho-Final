@@ -1,20 +1,29 @@
 package com.senac.model;
 
 public class Issue {
-	
+	private String id;
 	private String estado;
 	private String titulo;
 	private String criticidade;
 	private String tipo;
 	private String status;
 	
-	public Issue(String estado, String titulo, String criticidade, String tipo, String status) {
+	public Issue(String id, String estado, String titulo, String criticidade, String tipo, String status) {
 		super();
+		this.id = id;
 		this.estado = estado;
 		this.titulo = titulo;
 		this.criticidade = criticidade;
 		this.tipo = tipo;
 		this.status = status;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getEstado() {
