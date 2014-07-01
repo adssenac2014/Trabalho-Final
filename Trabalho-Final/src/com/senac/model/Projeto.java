@@ -1,17 +1,20 @@
 package com.senac.model;
 
+import com.senac.estruturasDados.ListaLigada;
+
 public class Projeto {
 	
 	private String id;
 	private String titulo;
 	private String descricao;
-	
+	private ListaLigada<Usuario> usuarioLista;
 	public Projeto(String id, String titulo, String descricao) {
 		
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
+		this.usuarioLista = new ListaLigada<Usuario>();
 		
 	}
 
@@ -39,5 +42,10 @@ public class Projeto {
 		this.descricao = descricao;
 	}
 	
+	public ListaLigada<Usuario> getListaUsuario(){
+		
+	return this.usuarioLista;
+	
+	}
 	
 }

@@ -14,11 +14,11 @@ public class CsvDataLista {
 	private BufferedReader fileReader;
 	private String nameFile;
 
-	private ListaLigada<String> listaTableLine;
+	private ListaLigada<String[]> listaTableLine;
 
 	public CsvDataLista(String nomeArquivo) {
 
-		listaTableLine = new ListaLigada<String>();
+		listaTableLine = new ListaLigada<String[]>();
 		this.nameFile = nomeArquivo;
 	}
 
@@ -34,18 +34,18 @@ public class CsvDataLista {
 		new CsvDataLista("tabela").run();
 	}
 
-	public void SalvarArquivoCsv(ListaLigada<String> listaTableLine)
+	public void SalvarArquivoCsv(ListaLigada<String[]> listaTableLine)
 			throws IOException {
 
 		try {
 
 			fileWrite = new BufferedWriter(new FileWriter(nameFile + "2.csv"));
 
-			String[] linha;
+			String[] linha = new String[3];
 
 			while (!listaTableLine.vazia()) {
 
-				linha = (String[]) listaTableLine.pop();
+				linha =  listaTableLine.pop();
 
 				for (int j = 0; j < linha.length; j++) {
 
@@ -66,7 +66,7 @@ public class CsvDataLista {
 	}
 
 	// lê uma arquivo .csv e retorna uma pilha de array de String,
-	public ListaLigada<String> lerArquivoCsv(String nomeArquivo) {
+	public ListaLigada<String[]> lerArquivoCsv(String nomeArquivo) {
 
 		try {
 

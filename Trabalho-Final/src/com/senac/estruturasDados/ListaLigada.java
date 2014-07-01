@@ -27,11 +27,18 @@ public class ListaLigada<T> {
 
 	public void adicionaNoComeco(Object elemento) {
 
-		Celula<T> nova = new Celula<T>(elemento);
-		nova.setProxima(primeira.getProxima());
-		this.primeira.setAnterior(nova);
-		this.primeira = nova;
+		if (vazia()) {
 
+			Celula<T> cell = new Celula<T>(elemento);
+			this.primeira = cell;
+			this.ultima = cell;
+
+		} else {
+			Celula<T> nova = new Celula<T>(elemento);
+			nova.setProxima(primeira.getProxima());
+			this.primeira.setAnterior(nova);
+			this.primeira = nova;
+		}
 	}
 
 	public void adicionaNoFim(Object elemento) {
@@ -85,14 +92,14 @@ public class ListaLigada<T> {
 		}
 	}
 
-	public <T> Object pegaPrimeira() {
+	public T pegaPrimeira() {
 
-		return this.primeira.getElemento();
+		return (T) this.primeira.getElemento();
 	}
 
-	public <T> Object pegaUltima() {
+	public T pegaUltima() {
 
-		return this.ultima.getElemento();
+		return (T) this.ultima.getElemento();
 	}
 
 	public int tamanho() {
@@ -227,14 +234,14 @@ public class ListaLigada<T> {
 		return colecao;
 	}
 
-	public <T> Object pop() {
+	public T pop() {
 
 		if (!vazia()) {
-			
+
 			Object objeto = pegaUltima();
 			removeDoFim();
 
-			return objeto;
+			return (T) objeto;
 		} else {
 			throw new IllegalArgumentException("Lista vazia");
 		}

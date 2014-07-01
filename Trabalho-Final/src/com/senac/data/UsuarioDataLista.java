@@ -26,13 +26,13 @@ public class UsuarioDataLista {
 
 	public ListaLigada<Usuario> lerCsv() {
 
-		ListaLigada<String> listaTable = csvData.lerArquivoCsv(nomeArquivo);
+		ListaLigada<String[]> listaTable = csvData.lerArquivoCsv(nomeArquivo);
 		ListaLigada<Usuario> listaUsuario = new ListaLigada<Usuario>();
 		Usuario usuario;
 
 		while (!listaTable.vazia()) {
 
-			String[] linha = (String[]) listaTable.pegaUltima();
+			String[] linha = listaTable.pegaUltima();
 			listaTable.removeDoFim();
 
 			if (linha.length == 3) {
@@ -43,7 +43,7 @@ public class UsuarioDataLista {
 
 				usuario = new Usuario(idUsuario, nome, senha);
 
-				listaUsuario.adicionaNoFim(usuario);
+				listaUsuario.adicionaNoComeco(usuario);
 
 			} else {
 
@@ -54,23 +54,35 @@ public class UsuarioDataLista {
 		return listaUsuario;
 	}
 
-	private ListaLigada<String> converterUsuarioParaString(
+	private ListaLigada<String[]> converterUsuarioParaString(
 			ListaLigada<Usuario> listaUsuario) {
 
-		ListaLigada<String> listatableString = new ListaLigada<String>();
-		String[] linha = new String[3];
-		Usuario usuario;
+		ListaLigada<String[]> listatableString = new ListaLigada<String[]>();
+		
+		String[] linha = {"id","Nome","Senha"};
+		String[] aux = new String[3];
+		Usuario usuario = null;
+		
+		while(!listaUsuario.vazia()){
 
-		for (int i = 0; i < listaUsuario.tamanho(); i++) {
+		usuario = listaUsuario.pop();
 
-			usuario = listaUsuario.pegarElemento(i);
-
+			
+			
 			linha[0] = usuario.getIdUsuario();
 			linha[1] = usuario.getNome();
 			linha[2] = usuario.getSenha();
 
-			listatableString.adicionaNoFim(linha);
+			System.out.println(linha[0]);
+				
+			aux = linha;
+			
+			listatableString.adicionaNoFim(aux);
 		}
+		
+		
+		
+	
 		return listatableString;
 
 	}
